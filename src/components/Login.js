@@ -46,9 +46,9 @@ const [login] = useMutation(LOGIN_MUTATION, {
     username: formState.email,
     password: formState.password
   },
-  onCompleted: ({ data }) => {
-    console.log(data);
-    localStorage.setItem(AUTH_TOKEN, data);
+  onCompleted: ({ tokenAuth }) => {
+    console.log(tokenAuth);
+    localStorage.setItem(AUTH_TOKEN, tokenAuth.token);
     history.push('/');
   }
 });
