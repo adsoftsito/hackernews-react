@@ -3,12 +3,27 @@ import Link from './Link';
 
 import { useQuery, gql } from '@apollo/client';
 
-const FEED_QUERY = gql`
+export const FEED_QUERY = gql`
   {
-    links {
-        id
-        url
-        description
+    links(first:100, skip:1) {
+      id
+      url
+      description
+      postedBy {
+        username
+      }
+      votes(first:10) {
+         edges {
+           node {
+            id
+            user {
+              id
+            }
+          }
+        }
+      }
+      
+      
     }
   }
 `;
